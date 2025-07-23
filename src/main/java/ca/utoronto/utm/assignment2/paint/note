@@ -1,0 +1,18 @@
+
+For each new <Drawable>, we need to implement:
+
+-class <Drawable> -> implements DrawableDraw and DrawableUpdateModel, so we need methods draw(), handle().
+
+
+How current PaintModel works: e.g. circle
+
+1) when mouse is clicked, event is handled by PaintController
+2) in PaintController, drawableFactory creates a circle object for this specific model/canvas and sets it to temp.
+4) when mouse is dragged to actually draw the circle, this is handled by temp.handle() -> check circle.handle() in circle.
+5) When mouse is released, mouseEvent is again handled by temp.handle(). temp is set to null.
+
+how current PaintPanel works: e.g. circle
+
+1) cycle through the Drawable arraylist in model
+2) for each drawable, call d.draw() method to draw on panel -> check circle.draw() in circle.
+3) after all drawables in the drawable arraylist is drawn, draw the beingDrawn drawable on panel. beingDrawn is stored in paintModel.
